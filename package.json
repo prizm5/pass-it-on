@@ -1,0 +1,17 @@
+{
+  "name": "pass-it-on",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web",
+    "apps/admin"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace @pass-it-on/web",
+    "dev:admin": "npm run dev --workspace @pass-it-on/admin",
+    "build:web": "npm run build --workspace @pass-it-on/web",
+    "build:admin": "npm run build --workspace @pass-it-on/admin",
+    "lint:web": "npm run lint --workspace @pass-it-on/web",
+    "lint:admin": "npm run lint --workspace @pass-it-on/admin"
+  }
+}

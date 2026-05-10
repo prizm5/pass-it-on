@@ -1,0 +1,9 @@
+@PassItOn.Api_HostAddress = http://localhost:5200
+
+GET {{PassItOn.Api_HostAddress}}/health
+Accept: application/json
+
+###
+
+GET {{PassItOn.Api_HostAddress}}/api/content/home-bulletin
+Accept: application/json
