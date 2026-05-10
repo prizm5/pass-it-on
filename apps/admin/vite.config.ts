@@ -6,4 +6,7 @@ export default defineConfig({
   server: {
     port: 5174,
   },
+  preview: {
+    allowedHosts: ['passiton.nilscreque.com', 'admin.passiton.nilscreque.com'],
+  },
 });
