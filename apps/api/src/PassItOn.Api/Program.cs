@@ -34,6 +34,8 @@ PromoteEnvironmentVariable("ADMIN_SEED_ENABLED", "AdminSeed__Enabled");
 PromoteEnvironmentVariable("ADMIN_SEED_EMAIL", "AdminSeed__Email");
 PromoteEnvironmentVariable("ADMIN_SEED_PASSWORD", "AdminSeed__Password");
 PromoteEnvironmentVariable("ADMIN_SEED_DISPLAY_NAME", "AdminSeed__DisplayName");
+PromoteEnvironmentVariable("WEB_PUBLIC_URL", "Frontend__WebUrl");
+PromoteEnvironmentVariable("ADMIN_PUBLIC_URL", "Frontend__AdminUrl");
 PromoteEnvironmentVariable("IMAGE_STORAGE_ENABLED", "ImageStorage__Enabled");
 PromoteEnvironmentVariable("IMAGE_STORAGE_BUCKET_NAME", "ImageStorage__BucketName");
 PromoteEnvironmentVariable("IMAGE_STORAGE_REGION", "ImageStorage__Region");

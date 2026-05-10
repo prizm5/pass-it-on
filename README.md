@@ -55,6 +55,17 @@ Default service URLs:
 - API: `http://localhost:5200/health`
 - PostgreSQL: `localhost:5432`
 
+### Reverse proxy deployment
+
+For deployment behind Nginx, set these values in `.env` before building the frontend containers:
+
+- `WEB_PUBLIC_URL=https://passiton.nilscreque.com`
+- `ADMIN_PUBLIC_URL=https://admin.passiton.nilscreque.com`
+- `WEB_VITE_API_URL=/api`
+- `ADMIN_VITE_API_URL=/api` when the admin UI is on its own host that also proxies `/api`, or a full API URL if you expose it differently
+
+The ready-to-apply Nginx site examples live in `docs/nginx`.
+
 ### Validation
 
 Use these checks after setup to confirm the documented workflow is working:
