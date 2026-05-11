@@ -1,6 +1,15 @@
 import { clearAdminAuth, loadAdminAuth, saveAdminAuth, type StoredAdminAuth } from './auth';
 
-export const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:5200/api';
+const configuredApiBaseUrl = import.meta.env.VITE_API_URL as string | undefined;
+const runningOnLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const pointsToLocalhostApi =
+  typeof configuredApiBaseUrl === 'string' &&
+  /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/api\/?$/i.test(configuredApiBaseUrl);
+
+export const API_BASE_URL =
+  !runningOnLocalhost && pointsToLocalhostApi
+    ? `${window.location.origin}/api`
+    : configuredApiBaseUrl ?? 'http://localhost:5200/api';
 
 type RequestOptions = RequestInit & {
   auth?: boolean;
