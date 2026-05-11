@@ -4,6 +4,7 @@ using Amazon;
 using Amazon.S3;
 using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PassItOn.Api.Auth;
@@ -109,6 +110,18 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor |
+        ForwardedHeaders.XForwardedProto |
+        ForwardedHeaders.XForwardedHost;
+
+    // Reverse proxy traffic may originate from container bridge addresses.
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 // ── JWT ──────────────────────────────────────────────────────────────────────
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(JwtOptions.Section));
 builder.Services.Configure<DevAdminSeedOptions>(builder.Configuration.GetSection(DevAdminSeedOptions.Section));
@@ -193,6 +206,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseForwardedHeaders();
 app.UseHttpsRedirection();
 app.UseCors("Frontend");
 app.UseAuthentication();
